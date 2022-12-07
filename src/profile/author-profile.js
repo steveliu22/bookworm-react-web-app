@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AuthorProfile = (user) => {
+const AuthorProfile = () => {
   return <h1>bye</h1>;
 };
 
