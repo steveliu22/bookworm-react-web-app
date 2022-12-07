@@ -1,5 +1,5 @@
 export const BASE_URL =
-  process.env.BOOKWORM_API_BASE_URL || 'http://localhost:4000';
+  process.env.REACT_APP_API_BASE || 'http://localhost:4000';
 
 console.log(BASE_URL);
 
