@@ -26,4 +26,4 @@ export const FetchImagePath = (imgName) => {
 
 export const DEFAULT_LOGO_IMAGE = FetchImagePath('default-logo.png');
 
-export const DEFAULT_SEARCH_IMAGE = FetchImagePath('default-search.jpg');
+export const DEFAULT_SEARCH_IMAGE = FetchImagePath('default-search.png');

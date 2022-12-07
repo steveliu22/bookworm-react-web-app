@@ -33,7 +33,7 @@ export const deleteUser = async (uid) => {
   return response.data;
 };
 
-export const updateUser = async (uid, update) => {
-  const response = await api.put(`${BASE_URL}/users/${uid}`, update);
+export const updateUser = async (update) => {
+  const response = await api.put(`${BASE_URL}/users/${update.uid}`, update);
   return response.data;
 };

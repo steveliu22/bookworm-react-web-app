@@ -5,6 +5,7 @@ import {
   loginThunk,
   profileThunk,
   logoutThunk,
+  updateUserThunk,
 } from '../thunks/users-thunks';
 
 const usersReducer = createSlice({
@@ -13,7 +14,7 @@ const usersReducer = createSlice({
   initialState: {
     loading: false,
     users: [],
-    currentUser: null,
+    currentUser: localStorage.getItem('user'),
     error: null,
   },
   extraReducers: {
@@ -23,6 +24,7 @@ const usersReducer = createSlice({
 
     [registerThunk.fulfilled]: (state, action) => {
       state.currentUser = action.payload;
+      localStorage.setItem('user', action.payload);
     },
 
     [registerThunk.rejected]: (state, action) => {
@@ -32,6 +34,7 @@ const usersReducer = createSlice({
 
     [loginThunk.fulfilled]: (state, action) => {
       state.currentUser = action.payload;
+      localStorage.setItem('user', action.payload);
     },
 
     [loginThunk.rejected]: (state, action) => {
@@ -51,8 +54,12 @@ const usersReducer = createSlice({
       state.error = action.payload;
       state.currentUser = null;
     },
+
+    [updateUserThunk.fulfilled]: (state, action) => {
+      state.currentUser = action.payload;
+      localStorage.setItem('user', state.currentUser);
+    },
   },
-  reducers: {},
 });
 
 export default usersReducer.reducer;

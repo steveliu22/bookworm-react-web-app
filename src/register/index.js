@@ -36,9 +36,7 @@ const RegisterComponent = () => {
       return;
     }
 
-    if (!profilePicture) {
-      dispatch(uploadImageThunk(profilePicture));
-    }
+    dispatch(uploadImageThunk(profilePicture));
 
     dispatch(
       registerThunk({

@@ -14,6 +14,7 @@ const GoogleBookDetails = () => {
   const [review, setReview] = useState('');
   const { currentUser } = useSelector((state) => state.users);
   const { reviews } = useSelector((state) => state.reviews);
+  const { details } = useSelector((state) => state.googleBooks);
   const { bid } = useParams();
   const dispatch = useDispatch();
   const postReviewBtn = () => {
@@ -21,11 +22,14 @@ const GoogleBookDetails = () => {
       dispatch(createReviewThunk({ review, bookID: bid }));
     }
   };
+
+  useEffect(() => {
+    dispatch(findReviewsByBookThunk(bid));
+  }, []);
+
   useEffect(() => {
     dispatch(findBookByIdThunk(bid));
-    dispatch(findReviewsByBookThunk(bid));
-  }, [bid, reviews]);
-  const { details } = useSelector((state) => state.googleBooks);
+  }, [bid]);
 
   if (!details) return <h3>Loading ...</h3>;
 
@@ -148,7 +152,7 @@ const GoogleBookDetails = () => {
           </ul>
         </div>
 
-        <div className="pt-5">
+        <div className="p-5">
           <div className="text-center">
             <h5>All User Reviews</h5>
           </div>

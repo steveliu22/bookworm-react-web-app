@@ -2,8 +2,12 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import usersReducer from './reducers/users-reducer';
 import googleBooksReducer from './reducers/google-books-reducer';
+import currentlyReadingReducer from './reducers/currently-reading-reducer';
+import booksReducer from './reducers/books-reducer';
 import Home from './home';
 import LoginComponent from './login';
 import RegisterComponent from './register';
@@ -20,6 +24,8 @@ const store = configureStore({
     users: usersReducer,
     googleBooks: googleBooksReducer,
     reviews: reviewsReducer,
+    currentlyReading: currentlyReadingReducer,
+    books: booksReducer,
   },
 });
 
@@ -48,6 +54,7 @@ function App() {
           </div>
         </BrowserRouter>
       </CurrentUserComponent>
+      <ToastContainer />
     </Provider>
   );
 }

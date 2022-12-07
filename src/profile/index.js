@@ -1,13 +1,18 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import AuthorProfile from './author-profile';
+import ReviewerProfile from './reviewer-profile';
 
 const ProfileComponent = () => {
   const { currentUser } = useSelector((state) => state.users);
   return (
-    <>
-      <h1> Profile </h1>
-      {currentUser && <h2> Welcome {currentUser.username} </h2>}
-    </>
+    <div>
+      {currentUser.role === 'REVIEWER' ? (
+        <ReviewerProfile />
+      ) : (
+        <AuthorProfile user={currentUser} />
+      )}
+    </div>
   );
 };
 

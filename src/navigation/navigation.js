@@ -7,6 +7,7 @@ import NavigationTab from './navigation-tab';
 const NavigationSidebar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { currentUser } = useSelector((state) => state.users);
   const navTabs = [
     {
       location: '',
@@ -34,13 +35,12 @@ const NavigationSidebar = () => {
     },
   ];
   let welcomeTab = 'Welcome, Anonymous';
-  const { currentUser } = useSelector((state) => state.users);
   const handleLogoutBtn = () => {
     navigate(0);
     dispatch(logoutThunk(currentUser));
   };
   if (currentUser) {
-    welcomeTab = `Welcome back, ${currentUser.username}`;
+    welcomeTab = `Welcome, ${currentUser.username}`;
     navTabs.push({
       name: 'Profile',
       icon: <i className="fas fa-person" />,
@@ -56,7 +56,7 @@ const NavigationSidebar = () => {
   }
 
   return (
-    <>
+    <div className="p-3">
       <div>
         <p className="fs-7 small text-center">{welcomeTab}</p>
       </div>
@@ -80,7 +80,7 @@ const NavigationSidebar = () => {
           );
         })}
       </div>
-    </>
+    </div>
   );
 };
 export default NavigationSidebar;
