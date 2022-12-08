@@ -1,7 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { FetchImagePath } from '../shared/helpers';
+import {
+  FetchImagePath,
+  DEFAULT_LOGO_WIDTH,
+  DEFAULT_LOGO_HEIGHT,
+} from '../shared/helpers';
 import NavigationSidebar from '../navigation/navigation';
 import { findReviewsByAuthorThunk } from '../thunks/review-thunks';
 import { findAllBooksByIdThunk } from '../thunks/books-thunks';
@@ -39,13 +43,15 @@ const ReviewerProfile = () => {
               <img
                 src={FetchImagePath(currentUser.profilePicture)}
                 alt=""
-                className="w-75"
+                width={DEFAULT_LOGO_WIDTH}
+                height={DEFAULT_LOGO_HEIGHT}
               />
             </div>
 
             <div className="col-9">
               <div>
                 <h5>{currentUser.username}'s Reviews</h5>
+                {/* <pre>{JSON.stringify(currentUser, null, 2)}</pre> */}
                 <ul className="list-group pt-4">
                   {reviews.map((review) => {
                     return (

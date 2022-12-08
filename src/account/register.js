@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import { registerThunk } from '../thunks/users-thunks';
 import { uploadImageThunk } from '../thunks/image-thunks';
-import { DEFAULT_LOGO_IMAGE } from '../shared/helpers';
+import {
+  DEFAULT_LOGO_HEIGHT,
+  DEFAULT_LOGO_IMAGE,
+  DEFAULT_LOGO_WIDTH,
+} from '../shared/helpers';
 
 const RegisterComponent = () => {
   const [username, setUsername] = useState('');
@@ -18,21 +23,40 @@ const RegisterComponent = () => {
     useState('default-logo.png');
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { error } = useSelector((state) => state.users);
   const handleRegisterBtn = () => {
     if (username === '') {
-      console.log('You must provide a username');
+      toast.error('You must provide a username');
       return;
     }
 
-    if (password === '' || validatePassword === '') {
-      console.log(
-        'You cannot leave either the password or repeat password fields blank'
-      );
+    if (password === '') {
+      toast.error('Your must provide a valid password');
       return;
     }
 
     if (password !== validatePassword) {
-      console.log('Passwords must be matching');
+      toast.error('Password and repeat password must be matching');
+      return;
+    }
+
+    if (email === '') {
+      toast.error('Your must provide a valid email');
+      return;
+    }
+
+    if (birthday === '') {
+      toast.error('Your must provide a valid birthday');
+      return;
+    }
+
+    if (phoneNumber === '') {
+      toast.error('Your must provide a valid phone number');
+      return;
+    }
+
+    if (!profilePicture) {
+      toast.error('Your must provide a valid profile picture');
       return;
     }
 
@@ -50,17 +74,27 @@ const RegisterComponent = () => {
       })
     );
 
+    if (error !== '') {
+      toast.error(error);
+      return;
+    }
+
     navigate('/home');
   };
   return (
     <>
-      <div className="d-flex justify-content-center align-items-center pe-0 pt-1 mt-1 pb-2">
-        <img src={DEFAULT_LOGO_IMAGE} alt="" width={100} height={100} />
+      <div className="d-flex justify-content-center align-items-center pe-0 mt-1 pb-2 ">
+        <img
+          src={DEFAULT_LOGO_IMAGE}
+          alt=""
+          width={DEFAULT_LOGO_WIDTH}
+          height={DEFAULT_LOGO_HEIGHT}
+        />
       </div>
-      <div className="d-flex justify-content-center align-items-center pt-1 pb-2">
-        <div className="row w-25 border p-3 pb-1 border-dark rounded">
+      <div className="d-flex justify-content-center align-items-center">
+        <div className="row w-50 border p-3 pb-1 border-dark rounded">
           <div className="form-group ps-0 pe-0">
-            <h6>Username</h6>
+            <h6 className="small">Username</h6>
             <input
               className="form-control"
               value={username}
@@ -73,7 +107,7 @@ const RegisterComponent = () => {
           </div>
 
           <div className="form-group pt-4 ps-0 pe-0">
-            <h6>Password</h6>
+            <h6 className="small">Password</h6>
             <input
               className="form-control"
               value={password}
@@ -86,7 +120,7 @@ const RegisterComponent = () => {
           </div>
 
           <div className="form-group pt-4 ps-0 pe-0">
-            <h6>Repeat Password</h6>
+            <h6 className="small">Repeat Password</h6>
             <input
               className="form-control"
               value={validatePassword}
@@ -99,7 +133,7 @@ const RegisterComponent = () => {
           </div>
 
           <div className="form-group pt-4 ps-0 pe-0">
-            <h6>Email</h6>
+            <h6 className="small">Email</h6>
             <input
               className="form-control"
               value={email}
@@ -111,7 +145,7 @@ const RegisterComponent = () => {
           </div>
 
           <div className="form-group pt-4 ps-0 pe-0">
-            <h6>Birthday</h6>
+            <h6 className="small">Birthday</h6>
             <input
               className="form-control"
               value={birthday}
@@ -123,7 +157,7 @@ const RegisterComponent = () => {
           </div>
 
           <div className="form-group pt-4 ps-0 pe-0">
-            <h6>Phone #</h6>
+            <h6 className="small">Phone #</h6>
             <input
               className="form-control"
               value={phoneNumber}
@@ -146,7 +180,7 @@ const RegisterComponent = () => {
                   onChange={() => setRole('REVIEWER')}
                   checked
                 />
-                <label className="form-check-label" htmlFor="role">
+                <label className="form-check-label small" htmlFor="role">
                   Reviewer
                 </label>
               </div>
@@ -157,7 +191,7 @@ const RegisterComponent = () => {
                   name="role"
                   onChange={() => setRole('AUTHOR')}
                 />
-                <label className="form-check-label" htmlFor="role">
+                <label className="form-check-label small" htmlFor="role">
                   Author
                 </label>
               </div>
@@ -165,10 +199,10 @@ const RegisterComponent = () => {
           </div>
 
           <div className="form-group pt-2 ps-0 pe-0">
-            <h6>Profile Picture</h6>
+            <h6 className="small">Profile Picture</h6>
             <form encType="multipart/form-data">
               <input
-                className="form-control"
+                className="form-control fs-6"
                 type="file"
                 name="displayImage"
                 onChange={(e) => {
@@ -179,7 +213,7 @@ const RegisterComponent = () => {
             </form>
           </div>
 
-          <div className="form-group pt-4 ps-0 pe-0 justify-content-center text-center">
+          <div className="form-group pt-4 ps-0 pe-0 text-center">
             <div className="pb-2">
               <button
                 type="button"

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { BASE_URL } from './api';
 
-const api = axios.create({ withCredentials: true });
+const api = axios.create({ withCredentials: true, timeout: 20000 });
 
 export const findAllUsers = async () => {
   const response = await api.get(`${BASE_URL}/users`);
@@ -34,6 +34,6 @@ export const deleteUser = async (uid) => {
 };
 
 export const updateUser = async (update) => {
-  const response = await api.put(`${BASE_URL}/users/${update.uid}`, update);
-  return response.data;
+  await api.put(`${BASE_URL}/users/${update._id}`, update);
+  return update;
 };

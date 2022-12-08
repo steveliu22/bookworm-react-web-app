@@ -38,6 +38,10 @@ export const DEFAULT_LOGO_IMAGE = FetchImagePath('default-logo.png');
 
 export const DEFAULT_SEARCH_IMAGE = FetchImagePath('default-search.png');
 
+export const DEFAULT_LOGO_WIDTH = 50;
+
+export const DEFAULT_LOGO_HEIGHT = 50;
+
 export const NormalizeBookObject = (book) => {
   if ('volumeInfo' in book) {
     const bookVolume = book.volumeInfo;

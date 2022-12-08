@@ -5,15 +5,18 @@ import ReviewerProfile from './reviewer-profile';
 
 const ProfileComponent = () => {
   const { currentUser } = useSelector((state) => state.users);
-  return (
-    <div>
-      {currentUser.role === 'REVIEWER' ? (
-        <ReviewerProfile />
-      ) : (
-        <AuthorProfile user={currentUser} />
-      )}
-    </div>
-  );
+  const renderCurrentUser = () => {
+    if (currentUser === undefined) {
+      return <h1>Loading...</h1>;
+    }
+
+    if (currentUser.role === 'REVIEWER') {
+      return <ReviewerProfile />;
+    }
+
+    return <AuthorProfile />;
+  };
+  return <div>{renderCurrentUser()}</div>;
 };
 
 export default ProfileComponent;

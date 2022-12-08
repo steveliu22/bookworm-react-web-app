@@ -16,7 +16,6 @@ const AuthorProfile = () => {
   useEffect(() => {
     dispatch(findAllBooksByAuthorThunk(currentUser._id));
   }, []);
-  console.log(books);
   return (
     <div className="p-5">
       <div className="row">

@@ -1,21 +1,37 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import {
+  DEFAULT_LOGO_HEIGHT,
+  DEFAULT_LOGO_IMAGE,
+  DEFAULT_LOGO_WIDTH,
+} from '../shared/helpers';
 import { loginThunk } from '../thunks/users-thunks';
 
 const LoginComponent = () => {
+  const { error } = useSelector((state) => state.users);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleLoginBtn = () => {
     dispatch(loginThunk({ username, password }));
+    if (error !== '') {
+      toast.error(error);
+      return;
+    }
     navigate('/');
   };
   return (
     <>
       <div className="d-flex justify-content-center align-items-center pe-0 pt-5 mt-5 pb-0">
-        <img src="./images/logo.png" alt="" width={100} height={100} />
+        <img
+          src={DEFAULT_LOGO_IMAGE}
+          alt=""
+          width={DEFAULT_LOGO_WIDTH}
+          height={DEFAULT_LOGO_HEIGHT}
+        />
       </div>
       <div className="d-flex justify-content-center align-items-center pt-5">
         <div className="row w-25 border p-3 pb-1 border-dark rounded">

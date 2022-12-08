@@ -22,6 +22,7 @@ const NavigationSidebar = () => {
       link: '/search',
     },
   ];
+
   let buttons = [
     {
       name: 'Login',
@@ -34,11 +35,14 @@ const NavigationSidebar = () => {
       action: () => navigate('/register'),
     },
   ];
+
   let welcomeTab = 'Welcome, Anonymous';
+
   const handleLogoutBtn = () => {
     navigate(0);
     dispatch(logoutThunk(currentUser));
   };
+
   if (currentUser) {
     welcomeTab = `Welcome, ${currentUser.username}`;
     navTabs.push({

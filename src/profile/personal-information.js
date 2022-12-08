@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import { updateUserThunk } from '../thunks/users-thunks';
 
 const PersonalInformationComponent = () => {
@@ -10,6 +11,21 @@ const PersonalInformationComponent = () => {
   const [email, setEmail] = useState(currentUser.email);
   const [birthday, setBirthday] = useState(currentUser.birthday);
   const [phoneNumber, setPhoneNumber] = useState(currentUser.phoneNumber);
+  const { success } = useSelector((state) => state.users);
+  const handleUpdateProfileBtn = () => {
+    const updater = { ...currentUser };
+    updater.username = username;
+    updater.password = password;
+    updater.email = email;
+    updater.birthday = birthday;
+    updater.phoneNumber = phoneNumber;
+
+    dispatch(updateUserThunk(updater));
+
+    if (success !== '') {
+      toast.success(success);
+    }
+  };
   const infoArray = [
     {
       header: 'My Username',
@@ -42,20 +58,6 @@ const PersonalInformationComponent = () => {
       onChangeFunc: setEmail,
     },
   ];
-
-  const handleUpdateProfileBtn = () => {
-    const updater = {
-      username,
-      password,
-      email,
-      birthday,
-      phoneNumber,
-      role: currentUser.role,
-      profilePicture: currentUser.profilePicture,
-    };
-
-    dispatch(updateUserThunk({ uid: currentUser._id, ...updater }));
-  };
 
   return (
     <>

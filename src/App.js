@@ -9,10 +9,10 @@ import googleBooksReducer from './reducers/google-books-reducer';
 import currentlyReadingReducer from './reducers/currently-reading-reducer';
 import booksReducer from './reducers/books-reducer';
 import Home from './home';
-import LoginComponent from './login';
-import RegisterComponent from './register';
+import LoginComponent from './account/login';
+import RegisterComponent from './account/register';
 import ProfileComponent from './profile';
-import CurrentUserComponent from './current-user';
+import CurrentUserComponent from './profile/current-user';
 import SearchComponent from './search';
 import BookDetails from './details/book-details';
 import ProtectedRoute from './profile/ProtectedRoute';
@@ -35,28 +35,26 @@ function App() {
     <Provider store={store}>
       <CurrentUserComponent>
         <BrowserRouter>
-          <div>
-            <Routes>
-              <Route path="/*" element={<Home />} />
-              <Route path="/search" element={<SearchComponent />} />
-              <Route path="/publish" element={<PublishComponent />} />
-              <Route path="/search/:query" element={<SearchResults />} />
-              <Route path="/login" element={<LoginComponent />} />
-              <Route path="/register" element={<RegisterComponent />} />
-              <Route
-                path="/profile"
-                element={
-                  <ProtectedRoute>
-                    <ProfileComponent />
-                  </ProtectedRoute>
-                }
-              />
-              <Route path="/details/:bid" element={<BookDetails />} />
-            </Routes>
-          </div>
+          <Routes>
+            <Route path="/*" element={<Home />} />
+            <Route path="/search" element={<SearchComponent />} />
+            <Route path="/publish" element={<PublishComponent />} />
+            <Route path="/search/:query" element={<SearchResults />} />
+            <Route path="/login" element={<LoginComponent />} />
+            <Route path="/register" element={<RegisterComponent />} />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute>
+                  <ProfileComponent />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/details/:bid" element={<BookDetails />} />
+          </Routes>
         </BrowserRouter>
       </CurrentUserComponent>
-      <ToastContainer />
+      <ToastContainer position="bottom-center" />
     </Provider>
   );
 }

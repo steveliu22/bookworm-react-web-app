@@ -14,8 +14,9 @@ const usersReducer = createSlice({
   initialState: {
     loading: false,
     users: [],
-    currentUser: localStorage.getItem('user'),
+    currentUser: null,
     error: '',
+    success: '',
   },
   extraReducers: {
     [findAllUsersThunk.fulfilled]: (state, action) => {
@@ -23,20 +24,22 @@ const usersReducer = createSlice({
     },
 
     [registerThunk.fulfilled]: (state, action) => {
+      state.error = '';
       state.currentUser = action.payload;
     },
 
-    [registerThunk.rejected]: (state, action) => {
-      state.error = action.payload;
+    [registerThunk.rejected]: (state) => {
+      state.error = 'Invalid Registration/Login Attempt';
       state.currentUser = null;
     },
 
     [loginThunk.fulfilled]: (state, action) => {
+      state.error = '';
       state.currentUser = action.payload;
     },
 
-    [loginThunk.rejected]: (state, action) => {
-      state.error = action.payload;
+    [loginThunk.rejected]: (state) => {
+      state.error = 'Invalid Registration/Login Attempt';
       state.currentUser = null;
     },
 
@@ -48,6 +51,11 @@ const usersReducer = createSlice({
       state.currentUser = action.payload;
     },
 
+    [profileThunk.pending]: (state, action) => {
+      state.currentUser = action.payload;
+      state.error = 'Loading...';
+    },
+
     [profileThunk.rejected]: (state, action) => {
       state.error = action.payload;
       state.currentUser = null;
@@ -55,6 +63,7 @@ const usersReducer = createSlice({
 
     [updateUserThunk.fulfilled]: (state, action) => {
       state.currentUser = action.payload;
+      state.success = 'Succesfully Changed Your Profile';
     },
   },
 });
