@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { findBookByIdThunk } from '../thunks/google-books-thunks';
-import { DEFAULT_LOGO_IMAGE, FormatArrayTexts } from '../shared/helpers';
+import { useParams, Link } from 'react-router-dom';
+import { findAllBookByIdThunk } from '../thunks/books-thunks';
+import {
+  DEFAULT_LOGO_IMAGE,
+  NormalizeBookObject,
+  FetchImagePath,
+} from '../shared/helpers';
 import NavigationSidebar from '../navigation/navigation';
 import {
   createReviewThunk,
@@ -10,11 +14,11 @@ import {
 } from '../thunks/review-thunks';
 import ReviewComponent from '../review';
 
-const GoogleBookDetails = () => {
+const BookDetails = () => {
   const [review, setReview] = useState('');
   const { currentUser } = useSelector((state) => state.users);
   const { reviews } = useSelector((state) => state.reviews);
-  const { details } = useSelector((state) => state.googleBooks);
+  const { details } = useSelector((state) => state.books);
   const { bid } = useParams();
   const dispatch = useDispatch();
   const postReviewBtn = () => {
@@ -28,45 +32,38 @@ const GoogleBookDetails = () => {
   }, []);
 
   useEffect(() => {
-    dispatch(findBookByIdThunk(bid));
+    dispatch(findAllBookByIdThunk(bid));
   }, [bid]);
 
   if (!details) return <h3>Loading ...</h3>;
 
-  const volInfo = details.volumeInfo;
-
+  const actualBook = NormalizeBookObject(details);
   let coverImage = DEFAULT_LOGO_IMAGE;
-
-  if (volInfo.imageLinks) {
-    if ('thumbnail' in volInfo.imageLinks) {
-      coverImage = volInfo.imageLinks.thumbnail;
-    }
+  if (actualBook.type === 'google-book') {
+    coverImage = actualBook.coverImage;
+  } else {
+    coverImage = FetchImagePath(actualBook.coverImage);
   }
 
-  const authorsFormatted = FormatArrayTexts(
-    volInfo.authors,
-    'No authors found'
-  );
-
-  let isbnsFormatted = '';
-  if (volInfo.industryIdentifiers) {
-    isbnsFormatted = FormatArrayTexts(
-      volInfo.industryIdentifiers.map((isbn) => isbn.identifier),
-      'No ISBNs found'
+  let authorsFormatted = 'No authors found';
+  if (actualBook.type === 'google-book') {
+    authorsFormatted = actualBook.authors;
+  } else {
+    authorsFormatted = (
+      <Link to={`/profile/${actualBook.authors._id}`}>
+        {actualBook.authors.username}
+      </Link>
     );
   }
 
-  let categories = '';
-  if (volInfo.categories) {
-    categories = FormatArrayTexts(volInfo.categories, 'No Categories Found');
-  }
+  const { categories } = actualBook;
 
   return (
     <div className="p-5">
       <div className="row p-0">
         <div className="col-md-0 col-lg-2 p-0 pt-4">
           <NavigationSidebar />
-          {currentUser && (
+          {currentUser && currentUser.role === 'REVIEWER' && (
             <div className="pt-5">
               <div>
                 <textarea
@@ -98,7 +95,7 @@ const GoogleBookDetails = () => {
         <div className="col-md-12 col-lg-6 p-0 pe-5 pt-4">
           <ul className="list-group">
             <li className="list-group-item border-0">
-              <h2 className="fw-bolder fst-italic">{volInfo.title}</h2>
+              <h2 className="fw-bolder fst-italic">{actualBook.title}</h2>
             </li>
 
             <li className="list-group-item border-0">
@@ -111,35 +108,28 @@ const GoogleBookDetails = () => {
             <li className="text-start list-group-item border-0">
               <p className="fw-light">
                 <span className="fw-bold">Description: </span>
-                {volInfo.description}
+                {actualBook.description}
               </p>
             </li>
 
             <li className="list-group-item border-0">
               <p className="fw-normal">
                 <span className="fw-bolder">ISBN(s): </span>
-                {isbnsFormatted}
-              </p>
-            </li>
-
-            <li className="list-group-item border-0">
-              <p className="fw-normal">
-                <span className="fw-bolder">Page Count: </span>
-                {volInfo.pageCount}
+                {actualBook.isbn}
               </p>
             </li>
 
             <li className="list-group-item border-0">
               <p className="fw-normal">
                 <span className="fw-bolder">Publish Date: </span>
-                {volInfo.publishedDate}
+                {actualBook.publishDate}
               </p>
             </li>
 
             <li className="list-group-item border-0">
               <p className="fw-normal">
                 <span className="fw-bolder">Publisher: </span>
-                {volInfo.publisher}
+                {actualBook.publisher}
               </p>
             </li>
 
@@ -163,4 +153,4 @@ const GoogleBookDetails = () => {
   );
 };
 
-export default GoogleBookDetails;
+export default BookDetails;

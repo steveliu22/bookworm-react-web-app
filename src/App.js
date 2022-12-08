@@ -14,10 +14,11 @@ import RegisterComponent from './register';
 import ProfileComponent from './profile';
 import CurrentUserComponent from './current-user';
 import SearchComponent from './search';
-import GoogleBookDetails from './details/google-book-details';
+import BookDetails from './details/book-details';
 import ProtectedRoute from './profile/ProtectedRoute';
 import reviewsReducer from './reducers/reviews-reducer';
 import SearchResults from './search/search-results';
+import PublishComponent from './publish';
 
 const store = configureStore({
   reducer: {
@@ -38,6 +39,7 @@ function App() {
             <Routes>
               <Route path="/*" element={<Home />} />
               <Route path="/search" element={<SearchComponent />} />
+              <Route path="/publish" element={<PublishComponent />} />
               <Route path="/search/:query" element={<SearchResults />} />
               <Route path="/login" element={<LoginComponent />} />
               <Route path="/register" element={<RegisterComponent />} />
@@ -49,7 +51,7 @@ function App() {
                   </ProtectedRoute>
                 }
               />
-              <Route path="/details/:bid" element={<GoogleBookDetails />} />
+              <Route path="/details/:bid" element={<BookDetails />} />
             </Routes>
           </div>
         </BrowserRouter>

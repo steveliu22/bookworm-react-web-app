@@ -17,7 +17,7 @@ const Buttons = (book) => {
           className="btn btn-primary btn-block"
           onClick={() => navigate(`/details/${book.book.id}`)}
         >
-          Leave a Review
+          See Reviews
         </button>
       </div>
       <div className="col-lg-4 p-1">
@@ -27,11 +27,6 @@ const Buttons = (book) => {
           onClick={handleCurrentlyReadingBtn}
         >
           Add to Currently Reading
-        </button>
-      </div>
-      <div className="col-lg-4 p-1">
-        <button type="button" className="btn btn-info">
-          Add to Favorites
         </button>
       </div>
     </div>

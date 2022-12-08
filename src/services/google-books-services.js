@@ -7,6 +7,10 @@ export const findBooksBySearchTerm = async (search) => {
 };
 
 export const findBookById = async (bid) => {
-  const response = await axios.get(GOOGLE_BOOK_ID_FIND_API(bid));
+  const response = await axios
+    .get(GOOGLE_BOOK_ID_FIND_API(bid))
+    .catch((err) => {
+      return err.response;
+    });
   return response.data;
 };

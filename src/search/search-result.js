@@ -1,32 +1,34 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Buttons from './buttons';
-import { DEFAULT_LOGO_IMAGE, FormatArrayTexts } from '../shared/helpers';
+import { DEFAULT_LOGO_IMAGE, FetchImagePath } from '../shared/helpers';
 
 const SearchResult = (book) => {
-  const bookVolume = book.book.volumeInfo;
+  const actualBook = book.book;
   let coverImage = DEFAULT_LOGO_IMAGE;
-  if (bookVolume.imageLinks) {
-    if ('thumbnail' in bookVolume.imageLinks) {
-      coverImage = bookVolume.imageLinks.thumbnail;
-    }
+  if (actualBook.type === 'google-book') {
+    coverImage = actualBook.coverImage;
+  } else {
+    coverImage = FetchImagePath(actualBook.coverImage);
   }
-  const authorsFormatted = FormatArrayTexts(
-    bookVolume.authors,
-    'No authors found'
-  );
 
-  let isbnsFormatted = '';
-  if (bookVolume.industryIdentifiers) {
-    isbnsFormatted = FormatArrayTexts(
-      bookVolume.industryIdentifiers.map((isbn) => isbn.identifier),
-      'No ISBNs found'
+  let authorsFormatted = 'No authors found';
+  if (actualBook.type === 'google-book') {
+    authorsFormatted = actualBook.authors;
+  } else {
+    authorsFormatted = (
+      <Link to={`/profile/${actualBook.authors._id}`}>
+        {actualBook.authors.username}
+      </Link>
     );
   }
 
+  const isbnsFormatted = actualBook.isbn;
+
   const informationArray = [
     { title: 'Author(s)', info: authorsFormatted },
-    { title: 'Description', info: bookVolume.description },
-    { title: 'Publisher', info: bookVolume.publisher },
+    { title: 'Description', info: actualBook.description },
+    { title: 'Publisher', info: actualBook.publisher },
     { title: 'ISBN(s)', info: isbnsFormatted },
   ];
   return (
@@ -36,12 +38,12 @@ const SearchResult = (book) => {
           <img src={coverImage} alt="" className="img-fluid" width="100px" />
         </div>
         <div className="col-md-7 col-xxl-9 p-0">
-          <div className="fw-bolder fs-4 text-primary">{bookVolume.title}</div>
+          <div className="fw-bolder fs-4 text-primary">{actualBook.title}</div>
           {informationArray.map((info) => {
             return (
               <div className="pt-3 text-start p-0">
                 <p className="fs-6">
-                  <span className="fw-bold text-primary">{info.title}:</span>{' '}
+                  <span className="fw-bold text-primary">{info.title}: </span>
                   {info.info}
                 </p>
               </div>

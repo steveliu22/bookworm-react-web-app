@@ -26,6 +26,8 @@
     "react/no-unescaped-entities": [0],
     "react/destructuring-assignment": [0],
     "no-underscore-dangle": [0],
-    "no-await-in-loop": [0]
+    "no-await-in-loop": [0],
+    "react/no-array-index-key": [0],
+    "no-restricted-syntax": [0]
   }
 }
