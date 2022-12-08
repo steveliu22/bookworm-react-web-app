@@ -15,7 +15,7 @@ const usersReducer = createSlice({
     loading: false,
     users: [],
     currentUser: localStorage.getItem('user'),
-    error: null,
+    error: '',
   },
   extraReducers: {
     [findAllUsersThunk.fulfilled]: (state, action) => {
@@ -24,7 +24,6 @@ const usersReducer = createSlice({
 
     [registerThunk.fulfilled]: (state, action) => {
       state.currentUser = action.payload;
-      localStorage.setItem('user', action.payload);
     },
 
     [registerThunk.rejected]: (state, action) => {
@@ -34,7 +33,6 @@ const usersReducer = createSlice({
 
     [loginThunk.fulfilled]: (state, action) => {
       state.currentUser = action.payload;
-      localStorage.setItem('user', action.payload);
     },
 
     [loginThunk.rejected]: (state, action) => {
@@ -57,7 +55,6 @@ const usersReducer = createSlice({
 
     [updateUserThunk.fulfilled]: (state, action) => {
       state.currentUser = action.payload;
-      localStorage.setItem('user', state.currentUser);
     },
   },
 });

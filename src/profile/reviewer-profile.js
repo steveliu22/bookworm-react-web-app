@@ -108,7 +108,6 @@ const ReviewerProfile = () => {
                               to={`/details/${review.bookID}`}
                             >
                               <p className="fs-6 lead">{review.bookID}</p>
-                              {JSON.stringify(books)}
                             </Link>
                           </div>
                           <div className="col-9">{review.review}</div>
