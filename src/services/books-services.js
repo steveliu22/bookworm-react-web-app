@@ -45,3 +45,11 @@ export const findAllBooksBySearch = async (search) => {
   const allBooks = [...dbBooksData, ...googleBooks];
   return allBooks;
 };
+
+export const findRandomBook = async () => {
+  const search = await axios.get(`https://random-word-api.herokuapp.com/word`);
+  const { data } = search;
+  const booksRelatedToSearch = await findAllBooksBySearch(data);
+  const randomNumber = Math.floor(Math.random() * booksRelatedToSearch.length);
+  return booksRelatedToSearch[randomNumber];
+};

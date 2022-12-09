@@ -6,6 +6,7 @@ import {
   profileThunk,
   logoutThunk,
   updateUserThunk,
+  findUserByIdThunk,
 } from '../thunks/users-thunks';
 
 const usersReducer = createSlice({
@@ -64,6 +65,10 @@ const usersReducer = createSlice({
     [updateUserThunk.fulfilled]: (state, action) => {
       state.currentUser = action.payload;
       state.success = 'Succesfully Changed Your Profile';
+    },
+
+    [findUserByIdThunk.fulfilled]: (state, action) => {
+      state.users = [action.payload];
     },
   },
 });

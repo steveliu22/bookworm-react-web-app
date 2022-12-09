@@ -37,3 +37,8 @@ export const updateUser = async (update) => {
   await api.put(`${BASE_URL}/users/${update._id}`, update);
   return update;
 };
+
+export const findUserById = async (uid) => {
+  const response = await api.get(`${BASE_URL}/users/${uid}`);
+  return response.data;
+};

@@ -12,10 +12,10 @@ const NavigationTab = (tab) => {
             active === 'active' ? 'text-light' : 'text-dark'
           }`}
         >
-          <div className="col-md-12 col-lg-6 p-0 ">{tab.tab.icon}</div>
-          <div className="d-none d-lg-block col-lg-6 p-0 fs-6 text-start small fw-bold">
-            {tab.tab.name}
+          <div className="d-none d-xxl-block col-xxl-2 p-0 fs-6 text-start small fw-bold text-center">
+            {tab.tab.icon}
           </div>
+          <div className="col-lg-12 col-xxl-10 p-0 ">{tab.tab.name}</div>
         </div>
       </Link>
     </li>

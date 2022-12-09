@@ -79,7 +79,8 @@ const RegisterComponent = () => {
       return;
     }
 
-    navigate('/home');
+    navigate('/');
+    navigate(0);
   };
   return (
     <>

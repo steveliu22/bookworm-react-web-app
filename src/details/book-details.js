@@ -28,12 +28,11 @@ const BookDetails = () => {
   };
 
   useEffect(() => {
-    dispatch(findReviewsByBookThunk(bid));
+    if (bid) {
+      dispatch(findReviewsByBookThunk(bid));
+      dispatch(findAllBookByIdThunk(bid));
+    }
   }, []);
-
-  useEffect(() => {
-    dispatch(findAllBookByIdThunk(bid));
-  }, [bid]);
 
   if (!details) return <h3>Loading ...</h3>;
 

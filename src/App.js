@@ -19,6 +19,7 @@ import ProtectedRoute from './profile/ProtectedRoute';
 import reviewsReducer from './reducers/reviews-reducer';
 import SearchResults from './search/search-results';
 import PublishComponent from './publish';
+import PublicProfile from './profile/public-profile';
 
 const store = configureStore({
   reducer: {
@@ -51,6 +52,7 @@ function App() {
               }
             />
             <Route path="/details/:bid" element={<BookDetails />} />
+            <Route path="/profile/:uid" element={<PublicProfile />} />
           </Routes>
         </BrowserRouter>
       </CurrentUserComponent>

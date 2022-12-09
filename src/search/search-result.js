@@ -32,17 +32,19 @@ const SearchResult = (book) => {
     { title: 'ISBN(s)', info: isbnsFormatted },
   ];
   return (
-    <li className="list-group-item p-5 w-100 border">
+    <li className="list-group-item p-2 w-100 border rounded">
       <div className="row mx-auto">
         <div className="col-md-5 col-xxl-3 p-0 d-flex justify-content-center align-items-center">
           <img src={coverImage} alt="" className="img-fluid" width="100px" />
         </div>
         <div className="col-md-7 col-xxl-9 p-0">
-          <div className="fw-bolder fs-4 text-primary">{actualBook.title}</div>
+          <div className="fw-bolder fs-4 text-primary text-start">
+            <p className="p-0 small fs-5">{actualBook.title}</p>
+          </div>
           {informationArray.map((info) => {
             return (
               <div className="pt-3 text-start p-0">
-                <p className="fs-6">
+                <p className="small">
                   <span className="fw-bold text-primary">{info.title}: </span>
                   {info.info}
                 </p>

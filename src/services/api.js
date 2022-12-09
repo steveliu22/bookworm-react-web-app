@@ -1,8 +1,6 @@
 export const BASE_URL =
   process.env.REACT_APP_API_BASE || 'http://localhost:4000';
 
-// export const BASE_URL = 'http://localhost:4000';
-
 export const REVIEWS_API = `${BASE_URL}/reviews`;
 
 export const GOOGLE_BOOK_API = 'https://www.googleapis.com/books/v1';

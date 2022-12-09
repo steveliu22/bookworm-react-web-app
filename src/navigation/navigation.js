@@ -60,11 +60,9 @@ const NavigationSidebar = () => {
   }
 
   return (
-    <div className="p-3">
+    <div>
       <div>
         <p className="fs-7 small text-center">{welcomeTab}</p>
-      </div>
-      <div>
         <ul className="list-group">
           {navTabs.map((tab) => (
             <NavigationTab key={tab.name} tab={tab} />

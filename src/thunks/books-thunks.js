@@ -5,6 +5,7 @@ import {
   findAllBooksByAuthor,
   createBook,
   findAllBooksBySearch,
+  findRandomBook,
 } from '../services/books-services';
 
 export const findAllBookByIdThunk = createAsyncThunk('findAllBookById', (bid) =>
@@ -28,4 +29,9 @@ export const findAllBooksByAuthorThunk = createAsyncThunk(
 export const findAllBooksBySearchThunk = createAsyncThunk(
   'findAllBooksBySearch',
   async (search) => await findAllBooksBySearch(search)
+);
+
+export const findRandomBookThunk = createAsyncThunk(
+  'findRandomBook',
+  async () => await findRandomBook()
 );

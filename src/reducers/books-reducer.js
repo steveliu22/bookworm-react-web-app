@@ -5,6 +5,7 @@ import {
   findAllBooksByIdThunk,
   createBookThunk,
   findAllBooksBySearchThunk,
+  findRandomBookThunk,
 } from '../thunks/books-thunks';
 
 const initialState = {
@@ -33,6 +34,10 @@ const booksReducer = createSlice({
 
     [findAllBooksBySearchThunk.fulfilled]: (state, action) => {
       state.books = action.payload;
+    },
+
+    [findRandomBookThunk.fulfilled]: (state, action) => {
+      state.details = action.payload;
     },
   },
 });
