@@ -17,3 +17,8 @@ export const findReviewsByAuthor = async (uid) => {
   const response = await session.get(`${BASE_URL}/users/${uid}/reviews`);
   return response.data;
 };
+
+export const deleteReview = async (rid) => {
+  await session.delete(`${BASE_URL}/reviews/${rid}`);
+  return rid;
+};

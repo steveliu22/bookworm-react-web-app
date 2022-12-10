@@ -11,15 +11,15 @@ import booksReducer from './reducers/books-reducer';
 import Home from './home';
 import LoginComponent from './account/login';
 import RegisterComponent from './account/register';
-import ProfileComponent from './profile';
-import CurrentUserComponent from './profile/current-user';
+import ProfileComponent from './private-profile';
+import CurrentUserComponent from './private-profile/current-user';
 import SearchComponent from './search';
 import BookDetails from './details/book-details';
-import ProtectedRoute from './profile/ProtectedRoute';
+import ProtectedRoute from './private-profile/ProtectedRoute';
 import reviewsReducer from './reducers/reviews-reducer';
 import SearchResults from './search/search-results';
 import PublishComponent from './publish';
-import PublicProfile from './profile/public-profile';
+import PublicProfile from './public-profile/public-profile';
 
 const store = configureStore({
   reducer: {

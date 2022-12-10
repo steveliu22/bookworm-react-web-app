@@ -53,3 +53,8 @@ export const findRandomBook = async () => {
   const randomNumber = Math.floor(Math.random() * booksRelatedToSearch.length);
   return booksRelatedToSearch[randomNumber];
 };
+
+export const deleteBook = async (bid) => {
+  await session.delete(`${BASE_URL}/books/${bid}`);
+  return bid;
+};

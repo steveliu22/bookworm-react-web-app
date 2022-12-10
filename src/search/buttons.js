@@ -38,17 +38,17 @@ const Buttons = (book) => {
 
   return (
     <div className="row text-center">
-      <div className="col-lg-4 p-1">
+      <div className="col-sm-6 col-lg-4 p-1">
         <button
           type="button"
           className="btn btn-primary btn-block btn-sm"
           onClick={() => navigate(`/details/${book.book.id}`)}
         >
-          See Reviews
+          See Details
         </button>
       </div>
       {currentUser && !isCurrentlyReading() && (
-        <div className="col-lg-4 p-1">
+        <div className="col-sm-6 col-lg-4 p-1">
           <button
             type="button"
             className="btn btn-success btn-block btn-sm"

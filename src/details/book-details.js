@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { findAllBookByIdThunk } from '../thunks/books-thunks';
 import {
   DEFAULT_LOGO_IMAGE,
@@ -21,9 +21,11 @@ const BookDetails = () => {
   const { details } = useSelector((state) => state.books);
   const { bid } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const postReviewBtn = () => {
     if (currentUser) {
       dispatch(createReviewThunk({ review, bookID: bid }));
+      navigate(0);
     }
   };
 
@@ -141,9 +143,9 @@ const BookDetails = () => {
           </ul>
         </div>
 
-        <div className="p-5">
+        <div className="pt-4">
           <div className="text-center">
-            <h5>All User Reviews</h5>
+            <h5>All Reviews for {actualBook.title}</h5>
           </div>
           <ReviewComponent reviews={reviews} />
         </div>

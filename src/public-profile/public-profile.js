@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom';
 import { findUserByIdThunk } from '../thunks/users-thunks';
 import PublicAuthorProfile from './public-author-profile';
 import PublicReviewerProfile from './public-reviewer-profile';
+// import PublicAuthorProfile from './public-author-profile';
+// import PublicReviewerProfile from './public-reviewer-profile';
 
 const PublicProfile = () => {
   const { users } = useSelector((state) => state.users);
@@ -12,22 +14,28 @@ const PublicProfile = () => {
 
   useEffect(() => {
     dispatch(findUserByIdThunk(uid));
-  });
+  }, []);
 
-  const displayPage = () => {
-    if (users.length !== 0) {
-      const theUser = users[0];
-      if (theUser.role === 'REVIEWER') {
-        return <PublicReviewerProfile selectedUser={theUser} />;
-      }
-
-      return <PublicAuthorProfile />;
+  const getUser = () => {
+    if (users.length > 0) {
+      return users[0];
     }
-
-    return <h1>Loading...</h1>;
+    return null;
   };
 
-  return displayPage();
+  const renderCurrentUser = () => {
+    const currUser = getUser();
+    if (currUser === null) {
+      return <h1>Loading...</h1>;
+    }
+
+    if (currUser.role === 'REVIEWER') {
+      return <PublicReviewerProfile user={currUser} />;
+    }
+
+    return <PublicAuthorProfile user={currUser} />;
+  };
+  return <>{renderCurrentUser()}</>;
 };
 
 export default PublicProfile;

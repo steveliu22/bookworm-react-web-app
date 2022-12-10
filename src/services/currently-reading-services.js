@@ -18,3 +18,8 @@ export const findUserCurrentlyReading = async (uid) => {
 
   return response.data;
 };
+
+export const deleteCurrentlyReading = async (crid) => {
+  await session.delete(`${BASE_URL}/currentlyReading/${crid}`);
+  return crid;
+};

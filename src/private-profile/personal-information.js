@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { updateUserThunk } from '../thunks/users-thunks';
+import { loginThunk, updateUserThunk } from '../thunks/users-thunks';
 
 const PersonalInformationComponent = () => {
   const dispatch = useDispatch();
@@ -12,60 +12,60 @@ const PersonalInformationComponent = () => {
   const [birthday, setBirthday] = useState(currentUser.birthday);
   const [phoneNumber, setPhoneNumber] = useState(currentUser.phoneNumber);
   const { success } = useSelector((state) => state.users);
-  const handleUpdateProfileBtn = () => {
+  const infoArray = [
+    {
+      header: 'My Username',
+      information: username,
+      inputType: 'text',
+      onChangeFunc: setUsername,
+    },
+    {
+      header: 'My Password',
+      information: password,
+      inputType: 'text',
+      onChangeFunc: setPassword,
+    },
+    {
+      header: 'My Birthday',
+      information: birthday,
+      inputType: 'date',
+      onChangeFunc: setBirthday,
+    },
+    {
+      header: 'My Phone Number',
+      information: phoneNumber,
+      inputType: 'tel',
+      onChangeFunc: setPhoneNumber,
+    },
+    {
+      header: 'My Email',
+      information: email,
+      inputType: 'email',
+      onChangeFunc: setEmail,
+    },
+  ];
+
+  const handleUpdateProfileBtn = async () => {
     const updater = { ...currentUser };
     updater.username = username;
     updater.password = password;
     updater.email = email;
     updater.birthday = birthday;
     updater.phoneNumber = phoneNumber;
-
-    dispatch(updateUserThunk(updater));
-
+    await dispatch(updateUserThunk(updater));
+    await dispatch(loginThunk({ username, password }));
     if (success !== '') {
       toast.success(success);
     }
   };
-  const infoArray = [
-    {
-      header: 'My Username',
-      information: currentUser.username,
-      inputType: 'text',
-      onChangeFunc: setUsername,
-    },
-    {
-      header: 'My Password',
-      information: currentUser.password,
-      inputType: 'text',
-      onChangeFunc: setPassword,
-    },
-    {
-      header: 'My Birthday',
-      information: currentUser.birthday,
-      inputType: 'date',
-      onChangeFunc: setBirthday,
-    },
-    {
-      header: 'My Phone Number',
-      information: currentUser.phoneNumber,
-      inputType: 'tel',
-      onChangeFunc: setPhoneNumber,
-    },
-    {
-      header: 'My Email',
-      information: currentUser.email,
-      inputType: 'email',
-      onChangeFunc: setEmail,
-    },
-  ];
 
   return (
     <>
       <h4 className="lead text-center">My Information (private)</h4>
       <ul className="list-group">
-        {infoArray.map((info) => {
+        {infoArray.map((info, idx) => {
           return (
-            <li key={info.information} className="list-group-item pt-2">
+            <li key={idx} className="list-group-item pt-2">
               <div className="row">
                 <div className="col-6">
                   <span className="text-primary fw-bolder fs-6">
@@ -76,9 +76,10 @@ const PersonalInformationComponent = () => {
                   <span className="lead fs-6 float">
                     <input
                       className="form-control"
-                      type={info.inputType}
                       defaultValue={info.information}
                       onChange={(e) => info.onChangeFunc(e.target.value)}
+                      type={info.inputType}
+                      placeholder={info.header}
                     />
                   </span>
                 </div>
@@ -91,7 +92,7 @@ const PersonalInformationComponent = () => {
         <button
           type="button"
           className="btn btn-primary"
-          onClick={handleUpdateProfileBtn}
+          onClick={async () => await handleUpdateProfileBtn()}
         >
           Change Profile
         </button>

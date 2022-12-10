@@ -6,6 +6,7 @@ import {
   createBook,
   findAllBooksBySearch,
   findRandomBook,
+  deleteBook,
 } from '../services/books-services';
 
 export const findAllBookByIdThunk = createAsyncThunk('findAllBookById', (bid) =>
@@ -18,6 +19,11 @@ export const createBookThunk = createAsyncThunk('createBook', (book) =>
 
 export const findAllBooksByIdThunk = createAsyncThunk(
   'findAllBooksById',
+  async (bids) => await findAllBooksById(bids)
+);
+
+export const findAllBooksByIdThunk2 = createAsyncThunk(
+  'findAllBooksById2',
   async (bids) => await findAllBooksById(bids)
 );
 
@@ -34,4 +40,9 @@ export const findAllBooksBySearchThunk = createAsyncThunk(
 export const findRandomBookThunk = createAsyncThunk(
   'findRandomBook',
   async () => await findRandomBook()
+);
+
+export const deleteBookThunk = createAsyncThunk(
+  'deleteBook',
+  async (bid) => await deleteBook(bid)
 );
