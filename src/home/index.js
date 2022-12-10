@@ -2,7 +2,12 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import NavigationSidebar from '../navigation/navigation';
 import SearchResult from '../search/search-result';
-import { NormalizeBookObject } from '../shared/helpers';
+import {
+  NormalizeBookObject,
+  DEFAULT_LOGO_HEIGHT,
+  DEFAULT_LOGO_IMAGE,
+  DEFAULT_LOGO_WIDTH,
+} from '../shared/helpers';
 import {
   findAllBooksByAuthorThunk,
   findRandomBookThunk,
@@ -70,10 +75,18 @@ const HomeComponent = () => {
               b={books}
             />
           ) : (
-            <ul className="list-group">
-              <li className="list-group-item border-0 mt-5">
+            <ul className="list-group p-0">
+              <li className="list-group-item border-0 mt-0">
+                <div className="mb-4">
+                  <img
+                    src={DEFAULT_LOGO_IMAGE}
+                    alt=""
+                    width={DEFAULT_LOGO_WIDTH}
+                    height={DEFAULT_LOGO_HEIGHT}
+                  />
+                </div>
                 <p className="lead display-7">
-                  Login or register to leave reviews!
+                  Login or register for the full experience!
                 </p>
               </li>
             </ul>

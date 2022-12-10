@@ -16,19 +16,23 @@ const DisplayInfo = (props) => {
     if (currentlyReading.length > 0) {
       const mostRecentCurrentlyReading = currentlyReading[0];
       displayArray.push(
-        <li className="list-group-item mt-5 border-0">
-          <h6 className="lead">You're currently reading</h6>
-          <Link to={`/details/${mostRecentCurrentlyReading.bookID}`}>
-            {mostRecentCurrentlyReading.bookID}
+        <li className="list-group-item mt-2 border-0">
+          <Link
+            className="text-decoration-none"
+            to={`/details/${mostRecentCurrentlyReading.bookID}`}
+          >
+            <h6 className="lead fs-6">
+              What's {props.cu.username} been reading?
+            </h6>
           </Link>
         </li>
       );
     } else {
       displayArray.push(
-        <li className="list-group-item mt-4 border-0">
-          <p className="lead display-7">
-            You're currently not reading any books
-          </p>
+        <li className="list-group-item mt-2 border-0">
+          <h6 className="lead fs-6">
+            {props.cu.username} is not reading any books
+          </h6>
         </li>
       );
     }
@@ -38,17 +42,23 @@ const DisplayInfo = (props) => {
         if (books.length > 0) {
           const mostRecentBook = books[0];
           displayArray.push(
-            <li className="list-group-item mt-4 border-0">
-              <h6 className="lead">Your most recent book</h6>
-              <Link to={`/details/${mostRecentBook._id}`}>
-                {mostRecentBook._id}
+            <li className="list-group-item mt-2 border-0">
+              <Link
+                className="text-decoration-none"
+                to={`/details/${mostRecentBook._id}`}
+              >
+                <h6 className="lead fs-6">
+                  What's {props.cu.username} been working on?
+                </h6>
               </Link>
             </li>
           );
         } else {
           displayArray.push(
-            <li className="list-group-item mt-4 border-0">
-              <p className="lead display-7">You've added no books</p>
+            <li className="list-group-item mt-2 border-0">
+              <h6 className="lead display-7">
+                {props.cu.username} has added no books
+              </h6>
             </li>
           );
         }
@@ -58,17 +68,23 @@ const DisplayInfo = (props) => {
         if (reviews.length > 0) {
           const mostRecentReview = reviews[0];
           displayArray.push(
-            <li className="list-group-item mt-5 border-0">
-              <h6 className="lead">Your Most Recent Review</h6>
-              <Link to={`/details/${mostRecentReview.bookID}`}>
-                {mostRecentReview.bookID}
+            <li className="list-group-item mt-2 border-0">
+              <Link
+                className="text-decoration-none"
+                to={`/details/${mostRecentReview.bookID}`}
+              >
+                <h6 className="lead fs-6">
+                  What's {props.cu.username} been reviewing?
+                </h6>
               </Link>
             </li>
           );
         } else {
           displayArray.push(
-            <li className="list-group-item mt-4 border-0">
-              <p className="lead display-7">You've made no recent posts</p>
+            <li className="list-group-item mt-2 border-0">
+              <h6 className="lead fs-6">
+                {props.cu.username} is reviewing no books
+              </h6>
             </li>
           );
         }
@@ -79,7 +95,7 @@ const DisplayInfo = (props) => {
 
   return (
     <>
-      <div className="pt-3">
+      <div className="pt-3 mb-2">
         <img
           src={DEFAULT_LOGO_IMAGE}
           alt=""
