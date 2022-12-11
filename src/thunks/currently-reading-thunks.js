@@ -3,6 +3,7 @@ import {
   createCurrentlyReading,
   deleteCurrentlyReading,
   findUserCurrentlyReading,
+  findAllUsersCurrentlyReading,
 } from '../services/currently-reading-services';
 
 export const createCurrentlyReadingThunk = createAsyncThunk(
@@ -13,6 +14,11 @@ export const createCurrentlyReadingThunk = createAsyncThunk(
 export const findUserCurrentlyReadingThunk = createAsyncThunk(
   'findUserCurrentlyReading',
   async (uid) => findUserCurrentlyReading(uid)
+);
+
+export const findAllUsersCurrentlyReadingThunk = createAsyncThunk(
+  'findAllUsersCurrentlyReading',
+  async (bid) => findAllUsersCurrentlyReading(bid)
 );
 
 export const deleteCurrentlyReadingThunk = createAsyncThunk(

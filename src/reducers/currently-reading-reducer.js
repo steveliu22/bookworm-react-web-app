@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   createCurrentlyReadingThunk,
   deleteCurrentlyReadingThunk,
+  findAllUsersCurrentlyReadingThunk,
   findUserCurrentlyReadingThunk,
 } from '../thunks/currently-reading-thunks';
 
@@ -9,6 +10,7 @@ const currentlyReadingReducer = createSlice({
   name: 'currentlyReading',
   initialState: {
     currentlyReading: [],
+    usersCurrentlyReading: [],
   },
 
   extraReducers: {
@@ -29,6 +31,9 @@ const currentlyReadingReducer = createSlice({
       } else {
         state.currentlyReading.splice(find, find);
       }
+    },
+    [findAllUsersCurrentlyReadingThunk.fulfilled]: (state, action) => {
+      state.usersCurrentlyReading = action.payload;
     },
   },
 });

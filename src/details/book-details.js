@@ -13,12 +13,17 @@ import {
   findReviewsByBookThunk,
 } from '../thunks/review-thunks';
 import ReviewComponent from '../review';
+import { findAllUsersCurrentlyReadingThunk } from '../thunks/currently-reading-thunks';
+import UsersReading from './users-reading';
 
 const BookDetails = () => {
   const [review, setReview] = useState('');
   const { currentUser } = useSelector((state) => state.users);
   const { reviews } = useSelector((state) => state.reviews);
   const { details } = useSelector((state) => state.books);
+  const { usersCurrentlyReading } = useSelector(
+    (state) => state.currentlyReading
+  );
   const { bid } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -33,6 +38,7 @@ const BookDetails = () => {
     if (bid) {
       dispatch(findReviewsByBookThunk(bid));
       dispatch(findAllBookByIdThunk(bid));
+      dispatch(findAllUsersCurrentlyReadingThunk(bid));
     }
   }, []);
 
@@ -138,6 +144,18 @@ const BookDetails = () => {
               <p className="fw-normal">
                 <span className="fw-bolder">Categories: </span>
                 {categories}
+              </p>
+            </li>
+
+            <li className="list-group-item border-0">
+              <p className="fw-normal">
+                {usersCurrentlyReading.length > 0 ? (
+                  <UsersReading currentlyReading={usersCurrentlyReading} />
+                ) : (
+                  <h6 className="lead">
+                    Nobody is currently reading this book!
+                  </h6>
+                )}
               </p>
             </li>
           </ul>

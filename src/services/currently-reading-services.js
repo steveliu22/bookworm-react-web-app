@@ -23,3 +23,11 @@ export const deleteCurrentlyReading = async (crid) => {
   await session.delete(`${BASE_URL}/currentlyReading/${crid}`);
   return crid;
 };
+
+export const findAllUsersCurrentlyReading = async (bid) => {
+  const response = await session.get(
+    `${BASE_URL}/currentlyReading/${bid}/users`
+  );
+
+  return response.data;
+};
