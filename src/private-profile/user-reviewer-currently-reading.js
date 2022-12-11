@@ -57,9 +57,11 @@ const UserReviewerCurrentlyReading = (props) => {
   const reviewBooks = parseBooks()[0];
   const currentlyReadingBooks = parseBooks()[1];
   return (
-    <div className="p-4">
-      <h6 className="text-center">{reviewsHeader()}</h6>
-      <div className="border-bottom">
+    <div className="pt-3">
+      <div className="text-center">
+        <h6>{reviewsHeader()}</h6>
+      </div>
+      <div>
         {actualReviews.length > 0 ? (
           <UserReviews
             reviews={actualReviews}
@@ -67,7 +69,7 @@ const UserReviewerCurrentlyReading = (props) => {
             hide={actualUser === undefined}
           />
         ) : (
-          <h5>Can't find any reviews...</h5>
+          <h6>Can't find any reviews...</h6>
         )}
       </div>
       <div className="pt-3">

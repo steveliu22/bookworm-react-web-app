@@ -32,29 +32,27 @@ const PublicReviewerProfile = (user) => {
   };
 
   return (
-    <div className="p-5">
+    <div className="p-3 ps-4 pe-4">
       <div className="row">
         <div className="col-2">
           <NavigationSidebar />
         </div>
-        <div className="col-8 rounded p-5 pt-1">
+        <div className="col-7 col-sm-8 rounded p-5 pt-1">
           <div className="bg-primary rounded p-4">
-            <div className="ps-5">
-              <div className="row">
-                <div className="col-6 col-sm-6 col-md-5 col-xxl-6 text-center">
-                  <img
-                    src={FetchImagePath(currentUser.profilePicture)}
-                    alt=""
-                    width={DEFAULT_LOGO_WIDTH}
-                    height={DEFAULT_LOGO_HEIGHT}
-                  />
-                </div>
+            <div className="row">
+              <div className="col-sm-5 col-md-5 col-lg-6 col-xxl-4 text-center pe-2">
+                <img
+                  src={FetchImagePath(currentUser.profilePicture)}
+                  alt=""
+                  width={DEFAULT_LOGO_WIDTH}
+                  height={DEFAULT_LOGO_HEIGHT}
+                />
+              </div>
 
-                <div className="col-12 col-sm-6 col-md-7 col-xxl-6 d-flex align-items-center justify-content-start">
-                  <p className="h5 text-white">
-                    {currentUser.username}'s Profile
-                  </p>
-                </div>
+              <div className="col-sm-7 col-md-6 col-lg-6 col-xxl-6 my-auto p-0 text-center">
+                <p className="h5 text-white lead">
+                  {currentUser.username}'s Profile
+                </p>
               </div>
             </div>
           </div>
@@ -66,7 +64,7 @@ const PublicReviewerProfile = (user) => {
           />
         </div>
         {currentUser && (
-          <div className="col-md-2 col-lg-2 p-0 text-center border rounded h-75 p-3 mt-4">
+          <div className="col-3 col-sm-2 col-md-2 col-lg-2 p-0 text-center border rounded h-75 mt-4">
             <DisplayInfo
               cr={currentlyReading}
               cu={currentUser}

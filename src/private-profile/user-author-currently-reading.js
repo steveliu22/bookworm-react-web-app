@@ -23,7 +23,7 @@ const UserAuthorCurrentlyReading = (props) => {
       return `${actualUser.username}'s Books`;
     }
 
-    return 'My Reviews';
+    return 'My Books';
   };
 
   const currentlyReadingHeader = () => {
@@ -35,13 +35,15 @@ const UserAuthorCurrentlyReading = (props) => {
   };
 
   return (
-    <div className="p-4">
-      <h6 className="text-center">{booksHeader()}</h6>
+    <div className="pt-3">
+      <div className="text-center">
+        <h6>{booksHeader()}</h6>
+      </div>
       <div className="border-bottom">
         {actualBooks.length > 0 ? (
           <UserBooks books={actualBooks} hide={actualUser === undefined} />
         ) : (
-          <h5>Can't find any books...</h5>
+          <h6>Can't find any books...</h6>
         )}
       </div>
       <div className="pt-3">
@@ -54,7 +56,7 @@ const UserAuthorCurrentlyReading = (props) => {
               hide={actualUser === undefined}
             />
           ) : (
-            <h5>Can't find any books...</h5>
+            <h6>Can't find any books...</h6>
           )}
         </div>
       </div>

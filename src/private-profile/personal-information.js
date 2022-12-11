@@ -67,21 +67,19 @@ const PersonalInformationComponent = () => {
           return (
             <li key={idx} className="list-group-item pt-2">
               <div className="row">
-                <div className="col-6">
-                  <span className="text-primary fw-bolder fs-6">
+                <div className="col-lg-6">
+                  <span className="d-none d-xxl-block text-primary fw-bolder h6 small">
                     {`${info.header}: `}
                   </span>
                 </div>
-                <div className="col-6">
-                  <span className="lead fs-6 float">
-                    <input
-                      className="form-control"
-                      defaultValue={info.information}
-                      onChange={(e) => info.onChangeFunc(e.target.value)}
-                      type={info.inputType}
-                      placeholder={info.header}
-                    />
-                  </span>
+                <div className="col-md-12 col-lg-12 col-xxl-6">
+                  <input
+                    className="form-control"
+                    defaultValue={info.information}
+                    onChange={(e) => info.onChangeFunc(e.target.value)}
+                    type={info.inputType}
+                    placeholder={info.header}
+                  />
                 </div>
               </div>
             </li>
@@ -91,7 +89,7 @@ const PersonalInformationComponent = () => {
       <div className="pt-2 text-center">
         <button
           type="button"
-          className="btn btn-primary"
+          className="btn btn-primary btn-sm"
           onClick={async () => await handleUpdateProfileBtn()}
         >
           Change Profile

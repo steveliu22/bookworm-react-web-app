@@ -38,9 +38,9 @@ export const DEFAULT_LOGO_IMAGE = FetchImagePath('default-logo.png');
 
 export const DEFAULT_SEARCH_IMAGE = FetchImagePath('default-search.png');
 
-export const DEFAULT_LOGO_WIDTH = 50;
+export const DEFAULT_LOGO_WIDTH = 60;
 
-export const DEFAULT_LOGO_HEIGHT = 50;
+export const DEFAULT_LOGO_HEIGHT = 60;
 
 export const NormalizeBookObject = (book) => {
   if ('volumeInfo' in book) {
@@ -93,7 +93,7 @@ export const NormalizeBookObject = (book) => {
     coverImage: book.coverImage,
     isbn: book.isbn,
     publisher: book.publisher,
-    categories: book.categories,
+    categories: FormatArrayTexts(book.categories, 'No Categories Found'),
     publishDate: book.publishDate,
     type: 'db-book',
   };

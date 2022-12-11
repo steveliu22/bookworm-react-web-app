@@ -11,7 +11,7 @@ const UserBooks = (props) => {
   };
   return (
     <>
-      <ul className="p-2 pb-0">{actualBooks.map(bookMapFunc)}</ul>
+      <ul className="list-group p-0">{actualBooks.map(bookMapFunc)}</ul>
     </>
   );
 };

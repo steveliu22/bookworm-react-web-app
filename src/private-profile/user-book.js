@@ -23,32 +23,34 @@ const UserBook = (props) => {
     coverImage = FetchImagePath(actualBook.coverImage);
   }
   return (
-    <li className="list-group-item p-2 mb-2 w-100 border rounded text-decoration-none">
+    <li className="list-group-item pt-2 ps-2 pe-2 mb-2 w-100 border rounded text-decoration-none">
       <div className="row">
-        <div className="col-md-5 col-xxl-3 p-5 text-center">
+        <div className="col-sm-12 col-md-3 col-xxl-2 p-4 pb-3 text-start">
           <Link to={`/details/${actualBook.id}`}>
             <img
               src={coverImage}
               alt=""
-              className="img-fluid"
               width={DEFAULT_LOGO_WIDTH}
               height={DEFAULT_LOGO_HEIGHT}
             />
           </Link>
         </div>
 
-        <div className="col-md-7 col-xxl-9 text-center my-auto">
-          <div className="fw-bolder fs-4 text-primary">
-            <p className="small display-7 lead">
-              <span className="fw-bold small">Title: </span> {actualBook.title}
-            </p>
-            <p className="small display-7 lead p-0">
-              <span className="fw-bold small">Description: </span>
+        <div className="col-sm-12 col-md-9 col-xxl-10">
+          <div className="fw-bolder text-dark pb-5">
+            <div className="text-sm-right text-start h6 display-7 small fw-normal">
+              <span className="fw-bold h6 display-7 text-primary">Title: </span>
+              {actualBook.title}
+            </div>
+            <div className="d-none d-sm-block text-start h6 display-7 small text-dark fw-normal">
+              <span className="fw-bold h6 display-7 text-primary">
+                Description:{' '}
+              </span>
               {actualBook.description}
-            </p>
+            </div>
           </div>
           {notHideBtn && (
-            <div className="p-0 justify-content-center">
+            <div className="position-absolute bottom-0 pb-1">
               <button
                 type="button"
                 className="btn btn-sm btn-danger"

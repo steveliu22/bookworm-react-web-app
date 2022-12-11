@@ -12,7 +12,7 @@ const SingleReviewComponent = (review) => {
       <div className="row">
         <div className="col-sm-12 col-lg-2 ps-4 pb-2">
           <div className="row text-center">
-            <div className="col-sm-6 col-lg-3 pe-5 text-end">
+            <div className="col-6 col-sm-6 col-lg-3 pe-5 text-end">
               <img
                 src={FetchImagePath(review.review.user.profilePicture)}
                 alt=""
@@ -20,7 +20,7 @@ const SingleReviewComponent = (review) => {
                 height={DEFAULT_LOGO_HEIGHT - 25}
               />
             </div>
-            <div className="col-sm-6 col-lg-9 ps-2 text-start">
+            <div className="col-6 col-sm-6 col-lg-9 ps-2 text-start">
               <Link
                 className="text-decoration-none"
                 to={`/profile/${review.review.user._id}`}

@@ -37,19 +37,17 @@ const HomeComponent = () => {
   }, [currentUser]);
 
   return (
-    <div className="p-5">
+    <div className="p-3 ps-4 pe-4">
       <div className="row">
-        <div className="col-md-4 col-lg-2">
+        <div className="col-12 col-md-2 col-lg-2">
           <NavigationSidebar />
         </div>
-        <div className="col-md-6 col-lg-8 pt-0 pb-0 p-5 text-center mt-4">
+        <div className="col-md-8 col-lg-8 pt-0 pb-0 p-2 text-center mt-4">
           <div>
             <p className="lead display-6">Welcome to Bookworm!</p>
           </div>
           <div>
-            <p className="lead display-7">
-              Your free online book review website
-            </p>
+            <p className="lead display-7">Your favorite book catalog website</p>
           </div>
           <div>
             <div className="p-0">
@@ -66,7 +64,7 @@ const HomeComponent = () => {
             </div>
           </div>
         </div>
-        <div className="col-md-2 col-lg-2 p-0 text-center border rounded h-75 p-3 mt-4">
+        <div className="col-md-2 col-lg-2 p-0 m-0 text-center rounded h-75 mt-4">
           {currentUser ? (
             <DisplayInfo
               cr={currentlyReading}
@@ -85,7 +83,7 @@ const HomeComponent = () => {
                     height={DEFAULT_LOGO_HEIGHT}
                   />
                 </div>
-                <p className="lead display-7">
+                <p className="display-7 text-center">
                   Login or register for the full experience!
                 </p>
               </li>

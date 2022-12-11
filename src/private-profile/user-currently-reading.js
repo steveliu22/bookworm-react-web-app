@@ -29,13 +29,13 @@ const UserCurrentlyReading = (props) => {
   };
 
   return (
-    <div>
+    <>
       <ul className="list-group pt-4">
         {actualCurrentlyReading.map((reading, idx) => {
           return (
-            <li key={reading._id} className="list-group pb-4">
+            <li key={reading._id} className="list-group pb-4 mb-2">
               <div className="row">
-                <div className="col-xxl-9">
+                <div className="col-md-12 col-xxl-10">
                   <Link
                     className="text-decoration-none"
                     to={`/details/${reading.bookID}`}
@@ -44,7 +44,7 @@ const UserCurrentlyReading = (props) => {
                   </Link>
                 </div>
                 {notHideBtn && (
-                  <div className="col-md-3 col-xxl-3">
+                  <div className="col-md-0 col-xxl-2 text-center my-auto">
                     <button
                       type="button"
                       className="btn btn-danger btn-sm small"
@@ -61,7 +61,7 @@ const UserCurrentlyReading = (props) => {
           );
         })}
       </ul>
-    </div>
+    </>
   );
 };
 

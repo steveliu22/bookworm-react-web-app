@@ -1,5 +1,10 @@
 import React from 'react';
-import { DEFAULT_LOGO_IMAGE, FetchImagePath } from '../shared/helpers';
+import {
+  DEFAULT_LOGO_HEIGHT,
+  DEFAULT_LOGO_IMAGE,
+  DEFAULT_LOGO_WIDTH,
+  FetchImagePath,
+} from '../shared/helpers';
 
 const SingleReading = (book) => {
   const actualBook = book.book;
@@ -12,10 +17,16 @@ const SingleReading = (book) => {
   return (
     <li className="list-group-item border-0">
       <div className="row">
-        <div className="col-md-5 col-xxl-3 p-0 d-flex justify-content-center align-items-center">
-          <img src={coverImage} alt="" className="img-fluid" width="40px" />
+        <div className="d-none d-lg-block col-lg-4 col-xl-3 p-0 text-center">
+          <img
+            src={coverImage}
+            alt=""
+            className="img-fluid"
+            width={DEFAULT_LOGO_WIDTH}
+            height={DEFAULT_LOGO_HEIGHT}
+          />
         </div>
-        <div className="col-md-5 col-xxl-9 text-start">
+        <div className="col-md-12 col-lg-8 text-start my-auto">
           <div className="fw-bolder text-primary text-start small">
             {actualBook.title}
           </div>

@@ -73,7 +73,7 @@ const NavigationSidebar = () => {
             <div key={btn.name} className="pt-2 text-center">
               <button
                 type="button"
-                className={`btn ${btn.color} btn-block`}
+                className={`btn ${btn.color} btn-block btn-sm`}
                 onClick={btn.action}
               >
                 {btn.name}

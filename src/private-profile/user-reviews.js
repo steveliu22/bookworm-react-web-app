@@ -1,6 +1,5 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { NormalizeBookObject } from '../shared/helpers';
 import { deleteReviewThunk } from '../thunks/review-thunks';
 import SingleReview from './single-review';
@@ -24,26 +23,23 @@ const UserReviews = (props) => {
 
     return [];
   };
+
+  const allBooks = normalizeBooks();
   return (
-    <div>
-      <ul className="list-group pt-4">
+    <>
+      <ul className="list-group">
         {actualReviews.map((review, idx) => {
           return (
-            <li key={idx} className="list-group pb-4">
+            <li className="list-group-item p-0 mb-2 ps-2 pe-2 border rounded text-decoration-none">
               <div className="row">
-                <div className="col-5">
-                  <Link
-                    className="text-decoration-none"
-                    to={`/details/${review.bookID}`}
-                  >
-                    {normalizeBooks()[idx]}
-                  </Link>
+                <div className="col-sm-12 col-lg-4 mb-5 text-start">
+                  {allBooks[idx]}
                 </div>
-                <div className="col-4">
+                <div className="col-md-12 col-lg-8 mb-5 pt-3">
                   <p className="text-start small">{review.review}</p>
                 </div>
                 {notHideBtn && (
-                  <div className="col-md-2 col-xxl-3">
+                  <div className="position-absolute bottom-0 pb-2">
                     <button
                       type="button"
                       className="btn btn-sm btn-danger"
@@ -58,7 +54,7 @@ const UserReviews = (props) => {
           );
         })}
       </ul>
-    </div>
+    </>
   );
 };
 

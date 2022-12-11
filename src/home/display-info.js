@@ -21,18 +21,18 @@ const DisplayInfo = (props) => {
             className="text-decoration-none"
             to={`/details/${mostRecentCurrentlyReading.bookID}`}
           >
-            <h6 className="lead fs-6">
+            <p className="display-7 small">
               What's {props.cu.username} been reading?
-            </h6>
+            </p>
           </Link>
         </li>
       );
     } else {
       displayArray.push(
         <li className="list-group-item mt-2 border-0">
-          <h6 className="lead fs-6">
+          <p className="display-7 small">
             {props.cu.username} is not reading any books
-          </h6>
+          </p>
         </li>
       );
     }
@@ -47,18 +47,18 @@ const DisplayInfo = (props) => {
                 className="text-decoration-none"
                 to={`/details/${mostRecentBook._id}`}
               >
-                <h6 className="lead fs-6">
+                <p className="display-7 small">
                   What's {props.cu.username} been working on?
-                </h6>
+                </p>
               </Link>
             </li>
           );
         } else {
           displayArray.push(
             <li className="list-group-item mt-2 border-0">
-              <h6 className="lead display-7">
+              <p className="display-7 small">
                 {props.cu.username} has added no books
-              </h6>
+              </p>
             </li>
           );
         }
@@ -73,18 +73,18 @@ const DisplayInfo = (props) => {
                 className="text-decoration-none"
                 to={`/details/${mostRecentReview.bookID}`}
               >
-                <h6 className="lead fs-6">
+                <p className="display-7 small">
                   What's {props.cu.username} been reviewing?
-                </h6>
+                </p>
               </Link>
             </li>
           );
         } else {
           displayArray.push(
             <li className="list-group-item mt-2 border-0">
-              <h6 className="lead fs-6">
+              <p className="display-7 small">
                 {props.cu.username} is reviewing no books
-              </h6>
+              </p>
             </li>
           );
         }
@@ -103,7 +103,9 @@ const DisplayInfo = (props) => {
           height={DEFAULT_LOGO_HEIGHT}
         />
       </div>
-      <ul className="list-group">{displayInfo().map((display) => display)}</ul>
+      <ul className="list-group text-xxl-center text-xl-center text-lg-center text-md-center text-sm-center text-xs-center text-center">
+        {displayInfo().map((display) => display)}
+      </ul>
     </>
   );
 };

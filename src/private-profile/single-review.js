@@ -1,5 +1,11 @@
 import React from 'react';
-import { DEFAULT_LOGO_IMAGE, FetchImagePath } from '../shared/helpers';
+import { Link } from 'react-router-dom';
+import {
+  DEFAULT_LOGO_HEIGHT,
+  DEFAULT_LOGO_WIDTH,
+  DEFAULT_LOGO_IMAGE,
+  FetchImagePath,
+} from '../shared/helpers';
 
 const SingleReview = (book) => {
   const actualBook = book.book;
@@ -10,18 +16,23 @@ const SingleReview = (book) => {
     coverImage = FetchImagePath(actualBook.coverImage);
   }
   return (
-    <li className="list-group-item border-0 border-end">
-      <div className="row">
-        <div className="col-md-5 col-xxl-3 p-0 d-flex justify-content-center align-items-center">
-          <img src={coverImage} alt="" className="img-fluid" width="40px" />
-        </div>
-        <div className="col-md-5 col-xxl-6">
-          <div className="fw-bolder text-primary text-start small">
-            {actualBook.title}
-          </div>
+    <div className="row">
+      <div className="col-sm-4 col-md-5 col-lg-6 col-xxl-4 p-1 text-start text-center">
+        <Link to={`/details/${actualBook.id}`}>
+          <img
+            src={coverImage}
+            alt=""
+            width={DEFAULT_LOGO_WIDTH + 15}
+            height={DEFAULT_LOGO_HEIGHT + 15}
+          />
+        </Link>
+      </div>
+      <div className="col-sm-8 col-md-7 col-lg-6 col-xxl-8 p-2 my-auto">
+        <div className="d-none d-sm-block text-sm-right text-start h6 display-7 small text-start">
+          {actualBook.title}
         </div>
       </div>
-    </li>
+    </div>
   );
 };
 

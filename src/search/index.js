@@ -15,9 +15,9 @@ const SearchComponent = () => {
   };
 
   return (
-    <div className="p-5 pb-2">
+    <div className="p-3 ps-4 pe-4">
       <div className="row">
-        <div className="col-md-12 col-lg-2 text-center pb-4">
+        <div className="col-md-12 col-lg-2 text-center pb-3">
           <NavigationSidebar />
         </div>
         <div className="col-md-12 col-lg-10">
