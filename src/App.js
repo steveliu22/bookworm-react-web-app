@@ -20,6 +20,9 @@ import reviewsReducer from './reducers/reviews-reducer';
 import SearchResults from './search/search-results';
 import PublishComponent from './publish';
 import PublicProfile from './public-profile/public-profile';
+import meetingsReducer from './reducers/meetings-reducer';
+import CreateMeeting from './meetings/create-meeting';
+import AllMeetings from './meetings/all-meetings';
 
 const store = configureStore({
   reducer: {
@@ -28,6 +31,7 @@ const store = configureStore({
     reviews: reviewsReducer,
     currentlyReading: currentlyReadingReducer,
     books: booksReducer,
+    meetings: meetingsReducer,
   },
 });
 
@@ -39,10 +43,26 @@ function App() {
           <Routes>
             <Route path="/*" element={<Home />} />
             <Route path="/search" element={<SearchComponent />} />
-            <Route path="/publish" element={<PublishComponent />} />
+            <Route
+              path="/publish"
+              element={
+                <ProtectedRoute>
+                  <PublishComponent />
+                </ProtectedRoute>
+              }
+            />
             <Route path="/search/:query" element={<SearchResults />} />
             <Route path="/login" element={<LoginComponent />} />
             <Route path="/register" element={<RegisterComponent />} />
+            <Route path="/meetings" element={<AllMeetings />} />
+            <Route
+              path="/meetings/create"
+              element={
+                <ProtectedRoute>
+                  <CreateMeeting />
+                </ProtectedRoute>
+              }
+            />
             <Route
               path="/profile"
               element={

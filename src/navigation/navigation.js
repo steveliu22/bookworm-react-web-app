@@ -21,6 +21,12 @@ const NavigationSidebar = () => {
       icon: <i className="fas fa-search" />,
       link: '/search',
     },
+    {
+      location: 'meetings',
+      name: 'Meetings',
+      icon: <i className="fas fa-book" />,
+      link: '/meetings',
+    },
   ];
 
   let buttons = [
@@ -43,6 +49,10 @@ const NavigationSidebar = () => {
     dispatch(logoutThunk(currentUser));
   };
 
+  const handleMeetingsBtn = () => {
+    navigate('/meetings/create');
+  };
+
   if (currentUser) {
     welcomeTab = `Welcome, ${currentUser.username}`;
     navTabs.push({
@@ -51,6 +61,11 @@ const NavigationSidebar = () => {
       link: '/profile',
     });
     buttons = [
+      {
+        name: 'Schedule a Meeting',
+        color: 'btn-secondary',
+        action: handleMeetingsBtn,
+      },
       {
         name: 'Logout',
         color: 'btn-danger',

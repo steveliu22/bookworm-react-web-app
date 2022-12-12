@@ -9,12 +9,14 @@ import {
   deleteBook,
 } from '../services/books-services';
 
-export const findAllBookByIdThunk = createAsyncThunk('findAllBookById', (bid) =>
-  findAllBookById(bid)
+export const findAllBookByIdThunk = createAsyncThunk(
+  'findAllBookById',
+  async (bid) => await findAllBookById(bid)
 );
 
-export const createBookThunk = createAsyncThunk('createBook', (book) =>
-  createBook(book)
+export const createBookThunk = createAsyncThunk(
+  'createBook',
+  async (book) => await createBook(book)
 );
 
 export const findAllBooksByIdThunk = createAsyncThunk(
