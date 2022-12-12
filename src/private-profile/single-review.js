@@ -28,7 +28,7 @@ const SingleReview = (book) => {
         </Link>
       </div>
       <div className="col-sm-8 col-md-7 col-lg-6 col-xxl-8 p-2 my-auto">
-        <div className="d-none d-sm-block text-sm-right text-start h6 display-7 small text-start">
+        <div className="d-none d-sm-block text-sm-right text-start h6 display-7 small my-auto">
           {actualBook.title}
         </div>
       </div>

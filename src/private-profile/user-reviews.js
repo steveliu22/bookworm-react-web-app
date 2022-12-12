@@ -32,23 +32,24 @@ const UserReviews = (props) => {
           return (
             <li className="list-group-item p-0 mb-2 ps-2 pe-2 border rounded text-decoration-none">
               <div className="row">
-                <div className="col-sm-12 col-lg-4 mb-5 text-start">
+                <div className="col-12 col-sm-12 col-md-12 col-lg-6 border-0 border-end">
                   {allBooks[idx]}
                 </div>
-                <div className="col-md-12 col-lg-8 mb-5 pt-3">
+                <div className="col-12 col-sm-12 col-md-12 col-lg-6 mb-2 pt-1 text-center">
+                  <span className="fw-bold">Review:</span>{' '}
                   <p className="text-start small">{review.review}</p>
+                  {notHideBtn && (
+                    <div className="text-center">
+                      <button
+                        type="button"
+                        className="btn btn-sm btn-danger"
+                        onClick={async () => await handleDeleteBtn(review)}
+                      >
+                        Delete Review
+                      </button>
+                    </div>
+                  )}
                 </div>
-                {notHideBtn && (
-                  <div className="position-absolute bottom-0 pb-2">
-                    <button
-                      type="button"
-                      className="btn btn-sm btn-danger"
-                      onClick={async () => await handleDeleteBtn(review)}
-                    >
-                      Delete Review
-                    </button>
-                  </div>
-                )}
               </div>
             </li>
           );

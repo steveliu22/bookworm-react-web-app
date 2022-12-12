@@ -17,7 +17,7 @@ const SingleReading = (book) => {
   return (
     <li className="list-group-item border-0">
       <div className="row">
-        <div className="d-none d-lg-block col-lg-4 col-xl-3 p-0 text-center">
+        <div className="d-none d-md-block col-lg-4 col-xl-3 p-0 text-center">
           <img
             src={coverImage}
             alt=""
@@ -27,7 +27,7 @@ const SingleReading = (book) => {
           />
         </div>
         <div className="col-md-12 col-lg-8 text-start my-auto">
-          <div className="fw-bolder text-primary text-start small">
+          <div className="fw-bolder text-primary text-center small">
             {actualBook.title}
           </div>
         </div>

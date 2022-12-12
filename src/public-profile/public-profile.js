@@ -4,8 +4,6 @@ import { useParams } from 'react-router-dom';
 import { findUserByIdThunk } from '../thunks/users-thunks';
 import PublicAuthorProfile from './public-author-profile';
 import PublicReviewerProfile from './public-reviewer-profile';
-// import PublicAuthorProfile from './public-author-profile';
-// import PublicReviewerProfile from './public-reviewer-profile';
 
 const PublicProfile = () => {
   const { users } = useSelector((state) => state.users);
@@ -25,7 +23,7 @@ const PublicProfile = () => {
 
   const renderCurrentUser = () => {
     const currUser = getUser();
-    if (currUser === null) {
+    if (!currUser) {
       return <h1>Loading...</h1>;
     }
 
